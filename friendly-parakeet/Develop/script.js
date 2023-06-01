@@ -6,12 +6,12 @@ function generatePassword() {
     alert("Please enter a valid number between 8 and 128.");
     return "";
   }
-  const upperCase = confirm("Would you like to use uppercase letters?");
-  const lowerCase = confirm("Would you like to use lowercase letters?");
-  const numbers = confirm("would you like to use numbers?");
-  const special = confirm("would you like to use special characters?");
+  var upperCase = confirm("Would you like to use uppercase letters?");
+  var lowerCase = confirm("Would you like to use lowercase letters?");
+  var numbers = confirm("would you like to use numbers?");
+  var special = confirm("would you like to use special characters?");
 
-  let possiblechar ="";
+  let possibleChars ="";
 
   if (upperCase) {
     possibleChars += "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -29,8 +29,17 @@ function generatePassword() {
     possibleChars += "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~";
   }
 
+  if (possibleChars.length === 0) {
+    alert("Select at least one character type");
+  return ""
+  }
+  
+  var password = "";
+  for (var i = 0; i < passwordLength; i++) {
+    password += possibleChars.charAt(Math.floor(Math.random() * possibleChars.length));
+  }
 
-
+  return password;
 }
 
 // Get references to the #generate element
